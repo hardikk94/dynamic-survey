@@ -1,0 +1,25 @@
+<div class="survey-form-wrapper">
+    <div class="title">Survey Form</div>
+    <div class="form-group">
+        <form class="form-survey" #surveyForm="ngForm" (ngSubmit)="onSubmit(surveyForm)">            
+            <input  type="text" name="question" id="question" class="form-control" placeholder="Enter the Question" required ngModel />        
+            <div class="form-selection">
+                <div class="selection-title"> Select Inputs</div>
+                    <select name="inputType" id="inputType" multiple class="form-selection-input" ngModel required>
+                        <option *ngFor="let input of selectionList" [value]="input.type">{{input.name}}</option>
+                    </select>     
+            </div>
+            <div class="action-btns-row">               
+                <button type="submit" class="btn btn-submit"
+                [disabled]="!surveyForm.form.valid">Submit</button>
+                <button type="button" class="btn btn-next" (click)="goToNextQuestion()">View</button>
+            </div>
+        </form>
+    </div>
+    
+</div>
+
+
+
+
+

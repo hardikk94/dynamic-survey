@@ -1,0 +1,26 @@
+<div class="survey-list-wrapper">
+    <div class="title">Survey Form Submission</div>
+    <div class="form-group">
+        <div *ngIf="currentValue">
+            <div class="form-survey" *ngIf="currentValue">
+                <div class="question">{{currentValue?.question}}</div>
+                <div class="form-input" *ngFor="let item of currentValue?.inputType;let i = index">
+                    <input [type]="item.input" [name]="item.id" [id]="item.id" required
+                        [ngClass]="item.input == 'number' || item.input == 'text' ? 'form-control':'other-control'"
+                        [placeholder]="currentValue?.question" [(ngModel)]="item.value"
+                        (change)="onChange($event,item.input =='checkbox',i)"
+                        [checked]="item.value"/>
+                </div>
+                <div class="action-btns-row">
+                    <button type="button" class="btn btn-submit" [disabled]="checkCurrent()"
+                        (click)="nextQuestion(currentValue)">Next
+                        >></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question" *ngIf="!currentValue"> No Survey Form Created !!
+            <button type="button" class="btn btn-back" (click)="goBack()">Back</button>
+        </div>
+    </div>
+</div>
